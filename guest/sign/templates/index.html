@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django page</title>
+</head>
+<body>
+<h1>发布会管理</h1>
+<form method="post" action="/login_action/">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="username"><br>
+    <input type="password" name="password" placeholder="password"><br>
+    {{ error }}<br>
+    <button id="btn" type="submit">登录</button>
+</form>
+</body>
+</html>

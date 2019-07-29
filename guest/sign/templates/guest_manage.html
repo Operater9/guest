@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {# 加载bootstrap3应用、css、js文件#}
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <meta charset="UTF-8">
+    <title>Guest Manage</title>
+
+</head>
+<body>
+
+<!-- 导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/guest_manage/">Guest Manage System</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/event_manage/">发布会</a></li>
+            <li class="active"><a href="#">嘉宾</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">{{user}}</a></li>
+           <li><a href="/logout/">退出</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+ <!--嘉宾列表 -->
+      <div class="row" style="padding-top: 80px">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>名称</th>
+                <th>手机</th>
+                <th>Email</th>
+                <th>签到</th>
+                <th>发布会id</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for guest in guests %}
+                <tr>
+                  <td>{{ guest.id }}</td>
+                  <td>{{ guest.realname }}</td>
+                  <td>{{ guest.phone }}</td>
+                  <td>{{ guest.email }}</td>
+                  <td>{{ guest.sign }}</td>
+                  <td>{{ guest.event }}</td>
+                </tr>
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+<!-- 列表分页器 -->
+    <div class="pagination">
+      <span class="step-links">
+        {% if guests.has_previous %}
+          <a href="?phone={{ phone }}&page={{ guests.previous_page_number }}">previous</a>
+        {% endif %}
+          <span class="current">
+            Page {{ guests.number }} of {{ guests.paginator.num_pages }}.
+          </span>
+        {% if guests.has_next %}
+          {% if phone %}
+            <a href="?phone={{ phone }}&page={{ guests.next_page_number }}">next</a>
+          {% else %}
+           <a href="?page={{ guests.next_page_number }}">next</a>
+          {% endif %}
+        {% endif %}
+      </span>
+    </div>
+
+</body>
+</html>
