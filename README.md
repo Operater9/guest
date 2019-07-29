@@ -4,7 +4,8 @@ guest
 
 
 介绍：
-代码实现的一个简版的发布会签到系统。
+
+python代码实现的一个简版的发布会签到系统。
 
 它包含功能:
 
@@ -12,6 +13,9 @@ guest
 
 
 Python版本与依赖库：
+
 python3.5+ :https://www.python.org/
+
 Django 1.11.x :https://www.djangoproject.com/ (目前只在1.11.x 版本下运行通过)
+
 django-bootstrap3 : https://github.com/dyve/django-bootstrap3
